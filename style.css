@@ -1,0 +1,469 @@
+/*
+ * Drakon — a dragon in full fire, for Beekeeper Studio.
+ *
+ * Dark: blackened scale, magma, ember gold, a flash of jade.
+ * Light: dragon bone, flame and ink.
+ *
+ * The gray scale is pinned in both modes so the red-black / bone tint
+ * survives the generated Radix palette. The color scales (primary, red,
+ * green, ...) are left to the ColorGenerator, seeded below.
+ */
+
+.light-theme {
+  /* ===== Seeds: platinum, ink, blood red ===== */
+  --background: #eef0f4;
+  --base-gray: #6f798d;
+  --base-accent: #b3202e;
+  --base-red: #a8142f;
+  --base-orange: #b5560f;
+  --base-yellow: #8a6212;
+  --base-green: #1d6b5e;
+  --base-blue: #234f8a;
+  --base-purple: #5d42a0;
+  --base-pink: #a82a5a;
+
+  /* ===== Gray scale (cool platinum to ink) ===== */
+  --gray-1: #f4f5f8;
+  --gray-2: #eef0f4;
+  --gray-3: #e7eaef;
+  --gray-4: #dfe3e9;
+  --gray-5: #d6dbe3;
+  --gray-6: #cad0da;
+  --gray-7: #b8c0cd;
+  --gray-8: #8a93a6;
+  --gray-9: #6f798d;
+  --gray-10: #5a6479;
+  --gray-11: #3c4252;
+  --gray-12: #14161c;
+
+  --gray-a1: #28325003;
+  --gray-a2: #28325006;
+  --gray-a3: #2832500a;
+  --gray-a4: #2832500f;
+  --gray-a5: #28325013;
+  --gray-a6: #2832501a;
+  --gray-a7: #28325024;
+  --gray-a8: #28325033;
+  --gray-a9: #28325059;
+  --gray-a10: #28325099;
+  --gray-a11: #283250c7;
+  --gray-a12: #283250f2;
+
+  /* ===== Mode tokens ===== */
+  --text-muted: #424a5c;
+  --primary-contrast: #fff5f5;
+  --panel-bg: #fbfcfd;
+  --editor-bg: #fbfcfd;
+  --scrollbar-thumb: var(--gray-a5);
+  --panel-shadow: 0 0 0 1px var(--gray-a4), 0 10px 28px rgba(40, 50, 90, 0.2);
+
+  /* ===== Syntax ===== */
+  --syntax-keyword: #a32030;
+  --syntax-string: #7a5a14;
+  --syntax-constant: #a5532a;
+  --syntax-variable: #14161c;
+  --syntax-function: #234f8a;
+  --syntax-type: #1d6b5e;
+  --syntax-decorator: #5d42a0;
+  --syntax-link: #234f8a;
+  --syntax-diff: #a8142f;
+  --syntax-comment: #6f7788;
+  --syntax-punctuation: #3c4252;
+}
+
+.dark-theme {
+  /* ===== Seeds: obsidian glass, one molten accent ===== */
+  --background: #0a0a0b;
+  --base-gray: #7a7a82;
+  --base-accent: #ff6a1f;
+  --base-red: #ff4d5e;
+  --base-orange: #ffa22b;
+  --base-yellow: #e8c98a;
+  --base-green: #6fd1b5;
+  --base-blue: #7fb6ff;
+  --base-purple: #b49cff;
+  --base-pink: #ff7aa8;
+
+  /* ===== Gray scale (neutral obsidian) ===== */
+  --gray-1: #0a0a0b;
+  --gray-2: #111113;
+  --gray-3: #18181a;
+  --gray-4: #1f1f22;
+  --gray-5: #27272a;
+  --gray-6: #313135;
+  --gray-7: #424247;
+  --gray-8: #66666d;
+  --gray-9: #7a7a82;
+  --gray-10: #8f8f97;
+  --gray-11: #b4b4ba;
+  --gray-12: #ececee;
+
+  --gray-a1: #ffffff03;
+  --gray-a2: #ffffff06;
+  --gray-a3: #ffffff0a;
+  --gray-a4: #ffffff0f;
+  --gray-a5: #ffffff13;
+  --gray-a6: #ffffff1a;
+  --gray-a7: #ffffff24;
+  --gray-a8: #ffffff33;
+  --gray-a9: #ffffff42;
+  --gray-a10: #ffffff4d;
+  --gray-a11: #ffffff99;
+  --gray-a12: #ffffffeb;
+
+  /* ===== Mode tokens ===== */
+  --primary-contrast: #1a0a02;
+  --panel-bg: var(--gray-3);
+  --editor-bg: #080809;
+  --scrollbar-thumb: var(--gray-a5);
+  --panel-shadow: 0 0 0 1px var(--gray-a4), 0 10px 32px rgba(0, 0, 0, 0.65);
+
+  /* ===== Syntax ===== */
+  --syntax-keyword: #ff7a45;
+  --syntax-string: #e8c98a;
+  --syntax-constant: #f0a5b0;
+  --syntax-variable: #ececee;
+  --syntax-function: #7fb6ff;
+  --syntax-type: #6fd1b5;
+  --syntax-decorator: #b49cff;
+  --syntax-link: #7fb6ff;
+  --syntax-diff: #ff5a6a;
+  --syntax-comment: #7f7f87;
+  --syntax-punctuation: #b4b4ba;
+}
+
+.light-theme,
+.dark-theme {
+  /* ===== App chrome ===== */
+  --focus-ring: 2px solid var(--primary-9);
+  --link-fg: var(--primary-text);
+  --selection-bg: var(--primary-a5);
+  --selection-fg: var(--gray-12);
+
+  --titlebar-bg: var(--gray-2);
+  --sidebar-bg: var(--gray-2);
+  --statusbar-bg: var(--gray-2);
+  --tabs-header-bg: var(--gray-2);
+  --tab-bg: var(--gray-3);
+  --tab-active-bg: var(--editor-bg);
+
+  --input-border: 1px solid var(--gray-8);
+  --input-border-focus: 1px solid var(--primary-9);
+  --panel-bg-hover: var(--gray-a3);
+
+  --badge-primary-bg: var(--primary-solid-bg);
+  --badge-primary-fg: var(--primary-contrast);
+
+  /* ===== Table ===== */
+  --table-row-odd-bg: var(--gray-a3);
+  --table-cell-bg-hover: var(--gray-a4);
+  --table-cell-selected-bg: var(--primary-a5);
+
+  /* ===== Editor ===== */
+  --editor-gutter-bg: var(--gray-2);
+  --editor-gutter-border: transparent;
+  --editor-linenumber-fg: var(--gray-10);
+  --editor-linenumber-active-fg: var(--primary-text);
+  --editor-foldgutter-fg: var(--gray-9);
+  --editor-foldgutter-fg-hover: var(--primary-text);
+  --editor-activeline-bg: color-mix(in srgb, var(--primary-9) 7%, transparent);
+  --editor-activeline-gutter-bg: color-mix(in srgb, var(--primary-9) 7%, transparent);
+  --editor-selected-bg: var(--primary-a5);
+  --editor-matchingbracket-fg: var(--primary-text);
+  --editor-matchingbracket-bg: var(--primary-a5);
+}
+
+/* ==========================================================================
+ * Glass layer
+ * A fixed backdrop of embers sits behind every panel, and the panels are
+ * translucent over it. No backdrop-filter on structural panels: it would make
+ * them the containing block of position:fixed menus. Scoped to body.theme-drakon.
+ * ========================================================================== */
+
+.dark-theme {
+  --glass: rgba(24, 24, 26, 0.55);
+  --glass-strong: rgba(14, 14, 16, 0.66);
+  --pane: linear-gradient(0deg, rgba(255, 106, 31, 0.06), transparent 70%), #080809;
+  --glass-soft: rgba(255, 255, 255, 0.04);
+  --glass-edge: rgba(255, 255, 255, 0.09);
+  --glass-edge-top: rgba(255, 255, 255, 0.16);
+  --glass-blur: blur(22px) saturate(1.5);
+  --sheen: rgba(255, 255, 255, 0.05);
+  --silver: #ff9f5a; /* hairline tint: warm glow on obsidian */
+  --ember: #ff6a1f;
+  --ember-hot: #ffa22b;
+  --ember-deep: #e5301c;
+  --ember-glow: rgba(255, 106, 31, 0.5);
+  --drk-btn-fg: #1a0a02;
+  --drk-btn-ts: none;
+  --backdrop:
+    radial-gradient(900px 560px at 50% 118%, rgba(255, 90, 20, 0.35), transparent 62%),
+    radial-gradient(600px 400px at 90% -10%, rgba(255, 255, 255, 0.06), transparent 60%),
+    linear-gradient(180deg, #0a0a0b, #050506);
+}
+
+.light-theme {
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --pane: linear-gradient(0deg, rgba(179, 32, 46, 0.05), transparent 70%), #fbfcfd;
+  --glass-soft: rgba(30, 40, 70, 0.05);
+  --glass-edge: rgba(40, 50, 80, 0.12);
+  --glass-edge-top: rgba(255, 255, 255, 0.9);
+  --glass-blur: blur(22px) saturate(1.3);
+  --sheen: rgba(255, 255, 255, 0.6);
+  --silver: #646e8c; /* hairline tint: cool steel */
+  --ember: #b3202e;
+  --ember-hot: #d8404c;
+  --ember-deep: #7d0f20;
+  --ember-glow: rgba(179, 32, 46, 0.32);
+  --drk-btn-fg: #fff5f5;
+  --drk-btn-ts: 0 1px 1px rgba(60, 0, 0, 0.4);
+  --backdrop:
+    radial-gradient(700px 480px at 100% -10%, rgba(255, 255, 255, 0.9), transparent 60%),
+    radial-gradient(800px 520px at 0% 112%, rgba(200, 40, 60, 0.14), transparent 62%),
+    linear-gradient(160deg, #f1f3f6, #e7eaef 60%, #eef0f4);
+}
+
+body.theme-drakon .beekeeper-studio-wrapper {
+  background: var(--backdrop) !important;
+  background-attachment: fixed !important;
+}
+
+/* Film grain: a faint noise over everything gives the glass a tactile surface. */
+body.theme-drakon::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 2147483000;
+}
+
+/* ----- Glass panels ----- */
+body.theme-drakon .titlebar-wrapper,
+body.theme-drakon .sidebar.primary-sidebar,
+body.theme-drakon .tabs-header,
+body.theme-drakon .global-status-bar,
+body.theme-drakon footer.statusbar,
+body.theme-drakon .flyout-nav,
+body.theme-drakon .global-items {
+  background: linear-gradient(180deg, var(--sheen), transparent 60%), var(--glass) !important;
+  background-attachment: fixed !important;
+}
+
+body.theme-drakon .tab-content,
+body.theme-drakon .tab-pane,
+body.theme-drakon .query-editor {
+  background: transparent !important;
+}
+
+body.theme-drakon .cm-editor {
+  background: var(--pane) !important;
+}
+
+/* Hairline edges: a lit top rim and a faint border, like cut glass. */
+body.theme-drakon .sidebar.primary-sidebar,
+body.theme-drakon .tabs-header,
+body.theme-drakon .bottom-panel,
+body.theme-drakon .global-status-bar,
+body.theme-drakon .titlebar-wrapper {
+  box-shadow: inset 0 1px 0 var(--glass-edge-top), inset 0 0 0 1px var(--glass-edge);
+}
+
+/* ----- Molten primary buttons ----- */
+body.theme-drakon .btn.btn-primary,
+body.theme-drakon a.btn.btn-primary {
+  background: linear-gradient(135deg, var(--ember-hot), var(--ember) 55%, var(--ember-deep)) !important;
+  border-color: transparent !important;
+  color: var(--drk-btn-fg) !important;
+  text-shadow: var(--drk-btn-ts);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 16px -4px var(--ember-glow);
+}
+body.theme-drakon .btn.btn-primary:hover {
+  filter: brightness(1.12) saturate(1.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 22px -4px var(--ember-glow);
+}
+
+/* ----- Flat buttons and inputs as small glass chips ----- */
+body.theme-drakon .btn.btn-flat,
+body.theme-drakon .data-select-wrap {
+  background: var(--glass-soft) !important;
+  box-shadow: inset 0 0 0 1px var(--glass-edge);
+}
+
+/* ----- Scrollbars: thin, quiet, ember on hover ----- */
+body.theme-drakon ::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+body.theme-drakon ::-webkit-scrollbar-track,
+body.theme-drakon ::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+body.theme-drakon ::-webkit-scrollbar-thumb {
+  background: var(--gray-a7) !important;
+  border: 0 !important;
+  border-radius: 6px;
+}
+body.theme-drakon ::-webkit-scrollbar-thumb:hover {
+  background: var(--ember) !important;
+}
+
+/* ----- Data grid: transparent so the glass shows through ----- */
+body.theme-drakon .tabulator,
+body.theme-drakon .tabulator .tabulator-tableholder,
+body.theme-drakon .tabulator .tabulator-table {
+  background: transparent !important;
+}
+body.theme-drakon .tabulator .tabulator-header {
+  background: var(--glass-soft) !important;
+  box-shadow: inset 0 -1px 0 var(--glass-edge);
+}
+body.theme-drakon .tabulator .tabulator-row:hover {
+  background: color-mix(in srgb, var(--ember) 12%, transparent) !important;
+}
+
+/* ==========================================================================
+ * Craft layer
+ * Gold hairlines that fade at the ends, a lit top sheen on every panel,
+ * flame on the active tab, and glowing focus. All in layered backgrounds so
+ * no layout shifts.
+ * ========================================================================== */
+
+.dark-theme,
+.light-theme {
+  --hair: color-mix(in srgb, var(--silver) 55%, transparent);
+  --hair-h: linear-gradient(90deg, transparent, var(--hair) 18%, var(--hair) 82%, transparent);
+  --hair-v: linear-gradient(180deg, transparent, var(--hair) 18%, var(--hair) 82%, transparent);
+  --panel-sheen: linear-gradient(180deg, var(--sheen), transparent 55%);
+}
+
+body.theme-drakon .titlebar-wrapper {
+  background: var(--hair-h) bottom / 100% 1px no-repeat, var(--panel-sheen), var(--glass) !important;
+}
+body.theme-drakon .tabs-header {
+  background: var(--hair-h) bottom / 100% 1px no-repeat, var(--panel-sheen), var(--glass) !important;
+}
+body.theme-drakon .sidebar.primary-sidebar {
+  background: var(--hair-v) right / 1px 100% no-repeat, var(--panel-sheen), var(--glass) !important;
+}
+body.theme-drakon .global-status-bar,
+body.theme-drakon footer.statusbar {
+  background: var(--hair-h) top / 100% 1px no-repeat, var(--glass) !important;
+}
+body.theme-drakon .bottom-panel {
+  background: var(--hair-h) top / 100% 1px no-repeat, var(--pane) !important;
+}
+
+/* The panels already carry hairlines; keep only a soft inner edge. */
+body.theme-drakon .sidebar.primary-sidebar,
+body.theme-drakon .tabs-header,
+body.theme-drakon .bottom-panel,
+body.theme-drakon .global-status-bar,
+body.theme-drakon .titlebar-wrapper {
+  box-shadow: inset 0 0 0 1px var(--glass-edge);
+}
+
+/* ----- Sidebar: section titles and rows ----- */
+body.theme-drakon .list-heading {
+  color: var(--gray-11) !important;
+  letter-spacing: 0.14em;
+}
+body.theme-drakon .list-item:hover,
+body.theme-drakon .list-item.active,
+body.theme-drakon .list-item.selected {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ember) 18%, transparent), transparent 88%) !important;
+  box-shadow: inset 2px 0 0 var(--ember);
+}
+
+/* ----- Focus: a hot, soft ring ----- */
+body.theme-drakon input:focus,
+body.theme-drakon textarea:focus,
+body.theme-drakon select:focus {
+  box-shadow: 0 0 0 1px var(--ember), 0 0 16px -2px var(--ember-glow) !important;
+  outline: none;
+}
+
+/* ----- Grid: glass row numbers, gold-edged header ----- */
+body.theme-drakon .tabulator .tabulator-header {
+  background: var(--hair-h) bottom / 100% 1px no-repeat, var(--glass-soft) !important;
+  box-shadow: none;
+}
+body.theme-drakon .tabulator-row-header,
+body.theme-drakon .tabulator-col.tabulator-row-header {
+  background: var(--glass-soft) !important;
+  color: var(--gray-10) !important;
+}
+
+/* ----- Polish: softer corners on controls ----- */
+body.theme-drakon .btn,
+body.theme-drakon .data-select-wrap,
+body.theme-drakon input:not([type="checkbox"]):not([type="radio"]),
+body.theme-drakon select,
+body.theme-drakon textarea {
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+ * Floating surfaces: menus, dropdowns, modals, tooltips
+ * Deeper glass, a luminous 1px rim and a crimson halo, Raycast style.
+ * ========================================================================== */
+
+.dark-theme {
+  --float-bg: rgba(16, 16, 18, 0.88);
+  --float-rim: rgba(255, 160, 90, 0.32);
+  --float-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.8), 0 0 32px -10px var(--ember-glow);
+  --scrim: rgba(5, 5, 6, 0.6);
+}
+.light-theme {
+  --float-bg: rgba(255, 255, 255, 0.92);
+  --float-rim: rgba(100, 110, 140, 0.35);
+  --float-shadow: 0 18px 44px -14px rgba(40, 50, 90, 0.35), 0 0 30px -12px var(--ember-glow);
+  --scrim: rgba(30, 40, 70, 0.3);
+}
+
+body.theme-drakon x-menu,
+body.theme-drakon .tabulator-menu,
+body.theme-drakon .dropdown-menu,
+body.theme-drakon .vs__dropdown-menu,
+body.theme-drakon .v--modal-box,
+body.theme-drakon .vue-dialog,
+body.theme-drakon .beekeeper-modal {
+  background: linear-gradient(180deg, var(--sheen), transparent 40%), var(--float-bg) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.6);
+  border: 1px solid var(--float-rim) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--float-shadow) !important;
+}
+
+body.theme-drakon .v--modal-overlay {
+  background: var(--scrim) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+body.theme-drakon x-menuitem:hover,
+body.theme-drakon .tabulator-menu-item:hover,
+body.theme-drakon .dropdown-item:hover,
+body.theme-drakon .vs__dropdown-option--highlight {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ember) 24%, transparent), transparent 95%) !important;
+  border-radius: 8px;
+}
+
+body.theme-drakon .bks-tooltip,
+body.theme-drakon .tooltip-inner {
+  background: var(--float-bg) !important;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--float-rim);
+  border-radius: 8px;
+}
+
+/* Film grain is a dark-mode texture only. */
+body.theme-drakon.light-theme::after {
+  display: none;
+}

@@ -1,0 +1,10 @@
+{
+  "id": "drakon",
+  "name": "Drakon",
+  "author": {
+    "name": "Jonathan Hernandez Sanchez",
+    "url": "https://github.com/JonathanHerSa"
+  },
+  "description": "Dragonglass: obsidian glass with a single molten accent in the dark; platinum, ink and blood red in the light.",
+  "version": "1.0.0"
+}
