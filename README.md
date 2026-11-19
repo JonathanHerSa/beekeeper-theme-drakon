@@ -12,6 +12,12 @@ The two modes are designed separately. They do not share syntax colors, and the
 gray scale is pinned in both: neutral obsidian in the dark, cool platinum in
 the light.
 
+## Screenshots
+
+![Drakon dark](https://raw.githubusercontent.com/JonathanHerSa/beekeeper-theme-drakon/main/screenshots/dark.png)
+
+![Drakon light](https://raw.githubusercontent.com/JonathanHerSa/beekeeper-theme-drakon/main/screenshots/light.png)
+
 ## Palette
 
 | Role | Dark | Light |
